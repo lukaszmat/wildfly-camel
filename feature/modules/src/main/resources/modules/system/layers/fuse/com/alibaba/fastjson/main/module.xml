@@ -8,8 +8,8 @@
   </resources>
   <dependencies>
     <module name="javax.api" />
-    <module name="com.squareup.okhttp3" slot="fuse" />
-    <module name="com.squareup.retrofit2" />
+    <module name="com.squareup.okhttp3" slot="3.12" />
+    <module name="com.squareup.retrofit2" slot="2.5" />
     <module name="org.joda.time" slot="fuse" />
   </dependencies>
 </module>

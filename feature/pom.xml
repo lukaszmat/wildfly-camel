@@ -36,6 +36,7 @@
 
     <modules>
         <module>common</module>
+        <module>altmodA</module>
         <module>modules</module>
         <module>extrasA</module>
         <module>extrasB</module>

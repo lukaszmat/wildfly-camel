@@ -22,6 +22,9 @@
 
 <build xmlns="urn:wildfly:feature-pack-build:3.0" producer="wildfly-camel-feature-pack@maven(org.jboss.universe:community-universe):current">
     <dependencies>
+        <dependency group-id="org.wildfly.camel" artifact-id="wildfly-camel-feature-altmodA">
+            <name>org.wildfly.camel:wildfly-camel-feature-altmodA</name>
+        </dependency>
         <dependency group-id="org.wildfly.camel" artifact-id="wildfly-camel-feature-modules">
             <name>org.wildfly.camel:wildfly-camel-feature-modules</name>
         </dependency>

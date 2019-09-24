@@ -54,6 +54,12 @@
     <dependencies>
         <dependency>
             <groupId>org.wildfly.camel</groupId>
+            <artifactId>wildfly-camel-feature-altmodA</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.camel</groupId>
             <artifactId>wildfly-camel-feature-modules</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
@@ -96,6 +102,11 @@
                             <offline>false</offline>
                             <log-time>true</log-time>
                             <resolve-locals>
+                                <resolve-local>
+                                    <groupId>org.wildfly.camel</groupId>
+                                    <artifactId>wildfly-camel-feature-altmodA</artifactId>
+                                    <version>${project.version}</version>
+                                </resolve-local>
                                 <resolve-local>
                                     <groupId>org.wildfly.camel</groupId>
                                     <artifactId>wildfly-camel-feature-modules</artifactId>

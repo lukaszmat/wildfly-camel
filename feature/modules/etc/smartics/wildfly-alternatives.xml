@@ -37,13 +37,6 @@
         <include artifact="org.ow2.asm:asm" />
     </module>
 
-    <module name="com.fasterxml.jackson.datatype.jackson-datatype-jdk8" inherit-slot="false" slot="fuse">
-        <properties>
-            <property name="jboss.api" value="private"/>
-        </properties>
-        <include artifact=":jackson-datatype-jdk8" />
-    </module>
-
     <module name="com.fasterxml.jackson.datatype.jackson-datatype-jsr310" inherit-slot="false" slot="fuse">
         <properties>
             <property name="jboss.api" value="private"/>
@@ -58,6 +51,13 @@
         <include artifact=":jackson-jaxrs-base" />
         <include artifact=":jackson-jaxrs-json-provider" />
         <include artifact=":jackson-module-jaxb-annotations" />
+        <apply-to-dependencies skip="true">
+            <include module="jakarta.activation" />
+            <include module="jakarta.xml.bind" />
+        </apply-to-dependencies>
+        <dependencies>
+            <module name="javax.xml.bind.api" />
+        </dependencies>
     </module>
 
     <module name="com.github.ben-manes.caffeine" inherit-slot="false" slot="fuse">
@@ -106,17 +106,6 @@
         <include artifact="com.microsoft.azure:azure-storage" />
         <apply-to-dependencies skip="true">
             <include module="com.microsoft.azure.keyvault" />
-        </apply-to-dependencies>
-    </module>
-
-    <module name="com.squareup.okhttp3" inherit-slot="false" slot="fuse">
-        <properties>
-            <property name="jboss.api" value="private"/>
-        </properties>
-        <include artifact="com.squareup.okhttp3:okhttp"/>
-        <include artifact="com.squareup.okio:okio"/>
-        <apply-to-dependencies skip="true">
-            <include module="com.google.android" />
         </apply-to-dependencies>
     </module>
 
@@ -209,13 +198,6 @@
         <include artifact=":commons-lang" />
     </module>
 
-    <module name="org.apache.commons.lang3" inherit-slot="false" slot="fuse">
-        <properties>
-            <property name="jboss.api" value="private"/>
-        </properties>
-        <include artifact=":commons-lang3" />
-    </module>
-
     <module name="org.apache.commons.logging" inherit-slot="false" slot="fuse">
         <properties>
             <property name="jboss.api" value="private"/>
@@ -242,6 +224,28 @@
             <property name="jboss.api" value="private"/>
         </properties>
         <include artifact=":apache-mime4j-core" />
+    </module>
+
+    <module name="org.apache.lucene" inherit-slot="false" slot="fuse">
+        <include artifact="com.spatial4j:spatial4j" />
+        <include artifact="org.apache.lucene:lucene-analyzers-common" />
+        <include artifact="org.apache.lucene:lucene-backward-codecs" />
+        <include artifact="org.apache.lucene:lucene-core" />
+        <include artifact="org.apache.lucene:lucene-facet" />
+        <include artifact="org.apache.lucene:lucene-grouping" />
+        <include artifact="org.apache.lucene:lucene-highlighter" />
+        <include artifact="org.apache.lucene:lucene-join" />
+        <include artifact="org.apache.lucene:lucene-memory" />
+        <include artifact="org.apache.lucene:lucene-misc" />
+        <include artifact="org.apache.lucene:lucene-queries" />
+        <include artifact="org.apache.lucene:lucene-queryparser" />
+        <include artifact="org.apache.lucene:lucene-sandbox" />
+        <include artifact="org.apache.lucene:lucene-spatial" />
+        <include artifact="org.apache.lucene:lucene-spatial3d" />
+        <include artifact="org.apache.lucene:lucene-suggest" />
+        <dependencies>
+            <module name="javax.api" />
+        </dependencies>
     </module>
 
     <module name="org.apache.qpid.proton" inherit-slot="false" slot="fuse">
@@ -305,6 +309,7 @@
             <property name="jboss.api" value="private"/>
         </properties>
         <include artifact=":woodstox-core-asl" />
+        <include artifact=":woodstox-core" />
         <include artifact=":stax2-api" />
     </module>
 
@@ -327,13 +332,6 @@
             <property name="jboss.api" value="private"/>
         </properties>
         <include artifact="jaxen:jaxen" />
-    </module>
-
-    <module name="org.jdom" inherit-slot="false" slot="fuse">
-        <properties>
-            <property name="jboss.api" value="private"/>
-        </properties>
-        <include artifact=":jdom" />
     </module>
 
     <module name="org.joda.time" inherit-slot="false" slot="fuse">

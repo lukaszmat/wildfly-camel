@@ -150,7 +150,7 @@ public class XMPPIntegrationTest {
 
             consumerResult.assertIsSatisfied();
         } finally {
-            camelctx.stop();
+            camelctx.close();
         }
     }
 }

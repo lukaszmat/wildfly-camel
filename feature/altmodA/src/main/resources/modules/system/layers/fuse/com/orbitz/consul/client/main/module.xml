@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.1" name="com.orbitz.consul.client">
+  <properties>
+    <property name="jboss.api" value="private" />
+  </properties>
+  <resources>
+    <artifact name="${com.orbitz.consul:consul-client}" />
+  </resources>
+  <dependencies>
+    <module name="com.fasterxml.jackson.core.jackson-annotations" />
+    <module name="com.fasterxml.jackson.core.jackson-core" />
+    <module name="com.fasterxml.jackson.core.jackson-databind" />
+    <module name="com.fasterxml.jackson.datatype.jackson-datatype-guava" />
+    <module name="com.fasterxml.jackson.datatype.jackson-datatype-jdk8" />
+    <module name="com.google.guava" />
+    <module name="com.squareup.okhttp3" slot="3.12" />
+    <module name="com.squareup.retrofit2" slot="2.5" />
+    <module name="org.apache.commons.lang3" slot="fuse" />
+    <module name="org.slf4j" />
+  </dependencies>
+</module>

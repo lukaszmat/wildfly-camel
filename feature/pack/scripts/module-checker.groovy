@@ -174,6 +174,7 @@ def allowedDuplicateArtifacts = [
     "com.fasterxml.jackson.jaxrs:jackson-jaxrs-base",
     "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider",
     "com.fasterxml.jackson.module:jackson-module-jaxb-annotations",
+    "com.fasterxml.woodstox:woodstox-core",
     "com.github.ben-manes.caffeine:caffeine",
     "com.github.spullara.mustache.java:compiler",
     "com.googlecode.javaewah:JavaEWAH",
@@ -219,6 +220,7 @@ def allowedOrphanArtifacts = [
 def smarticsFilesPrefix = properties.get("wildfly-camel-feature-pack.basedir") + "/../"
 def smarticsDirectories = [
     "${smarticsFilesPrefix}common/etc/smartics",
+    "${smarticsFilesPrefix}altmodA/etc/smartics",
     "${smarticsFilesPrefix}modules/etc/smartics",
     "${smarticsFilesPrefix}extrasA/etc/smartics",
     "${smarticsFilesPrefix}extrasB/etc/smartics",
