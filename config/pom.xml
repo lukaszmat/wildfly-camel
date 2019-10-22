@@ -96,62 +96,74 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.jboss.galleon</groupId>
-                <artifactId>galleon-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>server-provisioning</id>
-                        <goals>
-                            <goal>provision</goal>
-                        </goals>
-                        <phase>process-test-classes</phase>
-                        <configuration>
-                            <install-dir>${project.build.directory}/${jboss.server.name}</install-dir>
-                            <offline>false</offline>
-                            <feature-packs>
-                                <feature-pack>
-                                    <groupId>org.wildfly</groupId>
-                                    <artifactId>wildfly-galleon-pack</artifactId>
-                                    <version>${version.wildfly}</version>
-                                    <inherit-configs>true</inherit-configs>
-                                </feature-pack>
-                            </feature-packs>
-                            <plugin-options>
-                                <jboss-maven-dist />
-                                <jboss-fork-embedded />
-                            </plugin-options>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-wildfly-configuration</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <tasks>
-                        <echo>${basedir}/../pom.xml</echo>
-                        <echo>${maven.dependency.org.apache.camel.camel-parent.pom.path}</echo>
-                        <echo>${maven.dependency.org.wildfly.wildfly-parent.pom.path}</echo>
-                        <propertyfile file="target/pom-paths.txt">
-                            <entry key="wildfly-camel" value="${basedir}/../pom.xml" />
-                            <entry key="camel-parent" value="${maven.dependency.org.apache.camel.camel-parent.pom.path}" />
-                            <entry key="wildfly-parent" value="${maven.dependency.org.wildfly.wildfly-parent.pom.path}" />
-                        </propertyfile>
-                        <copy file="${project.build.directory}/${jboss.server.name}/standalone/configuration/standalone.xml" todir="${project.build.testOutputDirectory}" overwrite="true" />
-                    </tasks>
-                </configuration>
-            </plugin>
+
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>galleon</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.galleon</groupId>
+                        <artifactId>galleon-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>server-provisioning</id>
+                                <goals>
+                                    <goal>provision</goal>
+                                </goals>
+                                <phase>process-test-classes</phase>
+                                <configuration>
+                                    <install-dir>${project.build.directory}/${jboss.server.name}</install-dir>
+                                    <offline>false</offline>
+                                    <feature-packs>
+                                        <feature-pack>
+                                            <groupId>org.wildfly</groupId>
+                                            <artifactId>wildfly-galleon-pack</artifactId>
+                                            <version>${version.wildfly}</version>
+                                            <inherit-configs>true</inherit-configs>
+                                        </feature-pack>
+                                    </feature-packs>
+                                    <plugin-options>
+                                        <jboss-maven-dist />
+                                        <jboss-fork-embedded />
+                                    </plugin-options>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-wildfly-configuration</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <tasks>
+                                <echo>${basedir}/../pom.xml</echo>
+                                <echo>${maven.dependency.org.apache.camel.camel-parent.pom.path}</echo>
+                                <echo>${maven.dependency.org.wildfly.wildfly-parent.pom.path}</echo>
+                                <propertyfile file="target/pom-paths.txt">
+                                    <entry key="wildfly-camel" value="${basedir}/../pom.xml" />
+                                    <entry key="camel-parent" value="${maven.dependency.org.apache.camel.camel-parent.pom.path}" />
+                                    <entry key="wildfly-parent" value="${maven.dependency.org.wildfly.wildfly-parent.pom.path}" />
+                                </propertyfile>
+                                <copy file="${project.build.directory}/${jboss.server.name}/standalone/configuration/standalone.xml" todir="${project.build.testOutputDirectory}" overwrite="true" />
+                            </tasks>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 
 </project>

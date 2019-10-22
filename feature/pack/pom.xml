@@ -83,93 +83,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.jboss.galleon</groupId>
-                <artifactId>galleon-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>provision-wildfly-camel</id>
-                        <goals>
-                            <goal>provision</goal>
-                        </goals>
-                        <phase>verify</phase>
-                        <configuration>
-                            <install-dir>${project.build.directory}/wildfly-camel-${project.version}</install-dir>
-                            <offline>false</offline>
-                            <resolve-locals>
-                                <resolve-local>
-                                    <groupId>org.wildfly.camel</groupId>
-                                    <artifactId>wildfly-camel-feature-modules</artifactId>
-                                    <version>${project.version}</version>
-                                </resolve-local>
-                                <resolve-local>
-                                    <groupId>org.wildfly.camel</groupId>
-                                    <artifactId>wildfly-camel-feature-extrasA</artifactId>
-                                    <version>${project.version}</version>
-                                </resolve-local>
-                                <resolve-local>
-                                    <groupId>org.wildfly.camel</groupId>
-                                    <artifactId>wildfly-camel-feature-extrasB</artifactId>
-                                    <version>${project.version}</version>
-                                </resolve-local>
-                                <resolve-local>
-                                    <groupId>org.wildfly.camel</groupId>
-                                    <artifactId>wildfly-camel-feature-extrasC</artifactId>
-                                    <version>${project.version}</version>
-                                </resolve-local>
-                                <resolve-local>
-                                    <groupId>org.wildfly.camel</groupId>
-                                    <artifactId>wildfly-camel-feature-pack</artifactId>
-                                    <version>${project.version}</version>
-                                </resolve-local>
-                            </resolve-locals>
-                            <feature-packs>
-                                <feature-pack>
-                                    <groupId>org.wildfly.camel</groupId>
-                                    <artifactId>wildfly-camel-feature-pack</artifactId>
-                                    <version>${project.version}</version>
-                                    <inherit-configs>true</inherit-configs>
-                                </feature-pack>
-                            </feature-packs>
-                            <plugin-options>
-                                <jboss-fork-embedded />
-                                <jboss-maven-dist />
-                            </plugin-options>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.gmaven</groupId>
-                <artifactId>groovy-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>module-check</id>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <phase>verify</phase>
-                        <configuration>
-                            <source>${project.basedir}/scripts/module-checker.groovy</source>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.wildfly.galleon-plugins</groupId>
-                <artifactId>wildfly-galleon-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>feature-pack-build</id>
-                        <goals>
-                            <goal>build-feature-pack</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.ec4j.maven</groupId>
                 <artifactId>editorconfig-maven-plugin</artifactId>
                 <configuration>
@@ -180,6 +93,104 @@
             </plugin>
         </plugins>
     </build>
+
+
+    <profiles>
+        <profile>
+            <id>galleon</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.galleon</groupId>
+                        <artifactId>galleon-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>provision-wildfly-camel</id>
+                                <goals>
+                                    <goal>provision</goal>
+                                </goals>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <install-dir>${project.build.directory}/wildfly-camel-${project.version}</install-dir>
+                                    <offline>false</offline>
+                                    <resolve-locals>
+                                        <resolve-local>
+                                            <groupId>org.wildfly.camel</groupId>
+                                            <artifactId>wildfly-camel-feature-modules</artifactId>
+                                            <version>${project.version}</version>
+                                        </resolve-local>
+                                        <resolve-local>
+                                            <groupId>org.wildfly.camel</groupId>
+                                            <artifactId>wildfly-camel-feature-extrasA</artifactId>
+                                            <version>${project.version}</version>
+                                        </resolve-local>
+                                        <resolve-local>
+                                            <groupId>org.wildfly.camel</groupId>
+                                            <artifactId>wildfly-camel-feature-extrasB</artifactId>
+                                            <version>${project.version}</version>
+                                        </resolve-local>
+                                        <resolve-local>
+                                            <groupId>org.wildfly.camel</groupId>
+                                            <artifactId>wildfly-camel-feature-extrasC</artifactId>
+                                            <version>${project.version}</version>
+                                        </resolve-local>
+                                        <resolve-local>
+                                            <groupId>org.wildfly.camel</groupId>
+                                            <artifactId>wildfly-camel-feature-pack</artifactId>
+                                            <version>${project.version}</version>
+                                        </resolve-local>
+                                    </resolve-locals>
+                                    <feature-packs>
+                                        <feature-pack>
+                                            <groupId>org.wildfly.camel</groupId>
+                                            <artifactId>wildfly-camel-feature-pack</artifactId>
+                                            <version>${project.version}</version>
+                                            <inherit-configs>true</inherit-configs>
+                                        </feature-pack>
+                                    </feature-packs>
+                                    <plugin-options>
+                                        <jboss-fork-embedded />
+                                        <jboss-maven-dist />
+                                    </plugin-options>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>groovy-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>module-check</id>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <source>${project.basedir}/scripts/module-checker.groovy</source>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.wildfly.galleon-plugins</groupId>
+                        <artifactId>wildfly-galleon-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>feature-pack-build</id>
+                                <goals>
+                                    <goal>build-feature-pack</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <!-- <profiles>
         <profile>
             Needs to get re-enabled - see https://github.com/wildfly-extras/wildfly-camel/issues/2700
